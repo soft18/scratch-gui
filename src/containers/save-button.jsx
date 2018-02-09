@@ -40,18 +40,13 @@ class SaveButton extends React.Component {
             ...props
         } = this.props;
         return (
-            <ComingSoonTooltip
-                place="bottom"
-                tooltipId="save-button"
+            <ButtonComponent
+                onClick={this.handleClick}
+                {...props}
             >
-                <ButtonComponent
-                    disabled
-                    onClick={this.handleClick}
-                    {...props}
-                >
-                     <i className="fa fa-floppy-o" aria-hidden="true"></i> {lan.data.gui_menu_save}
-                </ButtonComponent>
-            </ComingSoonTooltip>
+                <i className="fa fa-floppy-o" aria-hidden="true"></i> {lan.data.gui_menu_save}
+            </ButtonComponent>
+
         );
     }
 }
