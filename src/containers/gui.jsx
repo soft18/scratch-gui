@@ -1,4 +1,5 @@
 import RobotBlocks from '../../mycode/services/robot/RobotBlocks'
+import myConfig from '../../mycode/config/MyConfig'
 import AudioEngine from 'scratch-audio';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -28,6 +29,7 @@ class GUI extends React.Component {
         this.props.vm.start();
         try{
             this.robotBlocks = new RobotBlocks();
+            myConfig.setVm(this.props.vm);
             setTimeout(() => {
                 this.robotBlocks.initBindVm(this.props.vm);
             }, 100);
