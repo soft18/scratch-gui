@@ -94,6 +94,15 @@ export default {
         /*  vm mode */
 
 
+        /*  gui Sprite*/
+        gui_console_sprite:'精灵',
+        gui_console_show:'展示',
+        gui_console_size:'尺寸',
+        gui_console_direction:'方向',
+        gui_console_stage:'舞台',
+        gui_console_backdrop:'背景',
+        /*  gui Sprite*/
+
         /* audio mode */
 
         /* blocks mode*/

@@ -15,6 +15,7 @@ import xIcon from './icon--x.svg';
 import yIcon from './icon--y.svg';
 import showIcon from './icon--show.svg';
 import hideIcon from './icon--hide.svg';
+import lan from '../../../mycode/language/Local';
 
 const BufferedInput = BufferedInputHOC(Input);
 
@@ -37,7 +38,7 @@ class SpriteInfo extends React.Component {
             >
                 <div className={classNames(styles.row, styles.rowPrimary)}>
                     <div className={styles.group}>
-                        <Label text="Sprite">
+                        <Label text={lan.data.gui_console_sprite}>
                             <BufferedInput
                                 className={styles.spriteInput}
                                 disabled={this.props.disabled}
@@ -102,7 +103,7 @@ class SpriteInfo extends React.Component {
                         <MediaQuery minWidth={layout.fullSizeMinWidth}>
                             <Label
                                 secondary
-                                text="Show"
+                                text={lan.data.gui_console_show}
                             />
                         </MediaQuery>
                         <div>
@@ -149,7 +150,7 @@ class SpriteInfo extends React.Component {
                     <div className={classNames(styles.group, styles.largerInput)}>
                         <Label
                             secondary
-                            text="Size"
+                            text={lan.data.gui_console_size}
                         >
                             <BufferedInput
                                 small
@@ -165,7 +166,7 @@ class SpriteInfo extends React.Component {
                     <div className={classNames(styles.group, styles.largerInput)}>
                         <Label
                             secondary
-                            text="Direction"
+                            text={lan.data.gui_console_direction}
                         >
                             <BufferedInput
                                 small

@@ -93,6 +93,14 @@ export default {
         gui_ai_control_description:'Voice Control Robot: red, yellow, green, and light',
         /*  vm mode */
 
+         /*  gui Sprite*/
+         gui_console_sprite:'Sprite',
+         gui_console_show:'show',
+         gui_console_size:'size',
+         gui_console_direction:'directioin',
+         gui_console_stage:'stage',
+         gui_console_backdrop:'backdrop',
+         /*  gui Sprite*/
 
         /* audio mode */
 
