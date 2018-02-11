@@ -112,7 +112,7 @@ const GUIComponent = props => {
                                             [styles.hidden]: !enableExtensions
                                         })}
                                         img={addExtensionIcon}
-                                        title={addExtensionMessage}
+                                        title={lan.data.gui_toolbox_category_extensions}
                                         onClick={onExtensionButtonClick}
                                     />
                                 </Box>

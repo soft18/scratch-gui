@@ -32,6 +32,7 @@ export default {
         gui_toolbox_category_variables:'Variables',
         gui_toolbox_category_myblocks:'My Blocks',
         gui_toolbox_category_gsrobot:'Robot',
+        gui_toolbox_category_extensions:'Extensions',
 
         gui_ex_add_sprite:'Add Sprite',
         gui_ex_add_backdrop:'Add Backdrop',

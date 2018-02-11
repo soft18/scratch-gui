@@ -32,6 +32,7 @@ export default {
         gui_toolbox_category_variables:'变量',
         gui_toolbox_category_myblocks:'自定义',
         gui_toolbox_category_gsrobot:'魔洛克',
+        gui_toolbox_category_extensions:'扩展',
 
         gui_ex_add_sprite:'添加角色',
         gui_ex_add_backdrop:'添加背景',
