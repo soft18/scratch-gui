@@ -27,6 +27,7 @@ const StageSelector = props => {
         onNewBackdropClick,
         ...componentProps
     } = props;
+    let backdropText = lan.data.gui_console_backdrop;
     return (
         <Box
             className={classNames(styles.stageSelector, {
@@ -36,7 +37,7 @@ const StageSelector = props => {
             {...componentProps}
         >
             <div className={styles.header}>
-                <div className={styles.headerTitle}>Stage</div>
+                <div className={styles.headerTitle}>{lan.data.gui_console_stage}</div>
             </div>
             {url ? (
                 <CostumeCanvas
@@ -47,11 +48,7 @@ const StageSelector = props => {
                 />
             ) : null}
             <div className={styles.label}>
-                <FormattedMessage
-                    defaultMessage="Backdrops"
-                    description="Label for the backdrops in the stage selector"
-                    id="gui.stageSelector.backdrops"
-                />
+              {backdropText}
             </div>
             <div className={styles.count}>{backdropCount}</div>
             <IconButton
