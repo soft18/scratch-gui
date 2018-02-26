@@ -60,6 +60,14 @@ export default new class GsToolbox {
       </shadow>
       </value>
       </block>
+      <block type="gs_motion_external_motor" id="gs_motion_external_motor">
+      <value name="s1">
+      <shadow type="math_number">
+      <field name="NUM">0</field>
+      </shadow>
+      </value>
+      </block>
+      <block type="gs_motion_stopMove" id="gs_motion_stopMove"></block>
       <block type="gs_light_change" id="gs_light_change">
       </block>
       <block type="gs_light_change_2" id="gs_light_change">
@@ -135,6 +143,18 @@ export default new class GsToolbox {
       </block>
       <block type="gs_sensing_linePatrolValue" id="gs_sensing_linePatrolValue">
       <field name="PORT">2</field>
+      </block>
+      <block type="gs_sensing_lightValue" id="gs_sensing_lightValue">
+      <field name="PORT">3</field>
+      </block>
+      <block type="gs_sensing_voiceValue" id="gs_sensing_voiceValue">
+      <field name="PORT">2</field>
+      </block>
+      <block type="gs_sensing_temperatureValue" id="gs_sensing_temperatureValue">
+      <field name="PORT">1</field>
+      </block>
+      <block type="gs_sensing_humidityValue" id="gs_sensing_humidityValue">
+      <field name="PORT">1</field>
       </block>
       <block type="gs_sensing_mousedown" id="gs_sensing_mousedown"></block>
             </category>

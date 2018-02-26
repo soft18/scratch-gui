@@ -212,6 +212,18 @@ class RobotBlocks {
         if (type === 'gs_sensing_linePatrolValue') {
             return (await this.gs_sensing_linePatrolValue(data));
         }
+        if (type === 'gs_sensing_lightValue') {
+            return (await this.gs_sensing_lightValue(data));
+          }
+          if (type === 'gs_sensing_voiceValue') {
+            return (await this.gs_sensing_voiceValue(data));
+          }
+          if (type === 'gs_sensing_temperatureValue') {
+            return (await this.gs_sensing_temperatureValue(data));
+          }
+          if (type === 'gs_sensing_humidityValue') {
+            return (await this.gs_sensing_humidityValue(data));
+          }
         return 1;
     }
 
@@ -236,6 +248,15 @@ class RobotBlocks {
         if (type === 'gs_motion_steering_engine') {
             return this.gs_motion_steering_engine(data);
         }
+
+        if (type === 'gs_motion_external_motor') {
+            return this.gs_motion_external_motor(data);
+          }
+
+        if (type === 'gs_motion_stopMove') {
+            return  this.gs_motion_stopMove(data);
+          }
+
         //light
         if (type === 'gs_light_change') {
             return this.gs_light_change(data);
@@ -377,6 +398,14 @@ class RobotBlocks {
         return 1;
     }
 
+    		
+    gs_motion_stopMove(data) {
+        if (this.delayEvent(11, 100))return 0;
+        let result =  this.gs_motion_move_base(0, 0);
+        if (result) return result;
+        return 0;
+      }
+
     gs_motion_steering_engine(data) {
         let port = Cast.toNumber(data.PORT);
         let engine = Cast.toNumber(data.TYPE);
@@ -389,6 +418,18 @@ class RobotBlocks {
         this.robot.setSteeringEngine(port, engine, s1,s2, true) ;
         return 1;
     }
+
+    gs_motion_external_motor(data) {
+        console.log(data);
+        let port = Cast.toNumber(data.PORT);
+        let engine = Cast.toNumber(data.TYPE);
+        let s1 = Cast.toNumber(data.s1);
+        if (s1 > 100) s1 = 100;
+        if (s1 < -100) s1 = -100;
+        this.robot.setExternalMotor(port, s1, true) ;
+        return 1;
+      }
+
    //light
     async gs_light_change_base(light, color) {
         if (this.delayEvent(6, 100))return;
@@ -559,6 +600,48 @@ class RobotBlocks {
         if (result) return result;
         return 0;
     }
+
+    async gs_sensing_lightValue(data) {
+        console.log('gs_sensing_lightValue');
+        if (this.delayEvent(13, 50))return 0;
+        let port = Cast.toNumber(data.PORT);// PORT
+        let result = await this.robot.getLightSensorValue(port);
+        console.log('gs_sensing_lightValue');
+        if (result) return result;
+        return 0;
+      }
+    
+      async gs_sensing_voiceValue(data) {
+        console.log('gs_sensing_voiceValue');
+        if (this.delayEvent(13, 50))return 0;
+        let port = Cast.toNumber(data.PORT);// PORT
+        let result = await this.robot.getVoiceSensorValue(port);
+        console.log('gs_sensing_voiceValue');
+        if (result) return result;
+        return 0;
+      }
+    
+      async gs_sensing_temperatureValue(data) {
+        console.log('gs_sensing_temperatureValue');
+        if (this.delayEvent(13, 50))return 0;
+        let port = Cast.toNumber(data.PORT);// PORT
+        let result = await this.robot.getTemperatureValue(port);
+        console.log('gs_sensing_temperatureValue');
+        console.log(result);
+        if (result) return result;
+        return 0;
+      }
+    
+      async gs_sensing_humidityValue(data) {
+        console.log('gs_sensing_temperatureValue');
+        if (this.delayEvent(13, 50))return 0;
+        let port = Cast.toNumber(data.PORT);// PORT
+        let result = await this.robot.getHumidityValue(port);
+        console.log('gs_sensing_humidityValue');
+        console.log(result);
+        if (result) return result;
+        return 0;
+      }
 
     //data
 

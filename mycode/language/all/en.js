@@ -38,6 +38,7 @@ export default {
         gui_ex_add_backdrop:'Add Backdrop',
 
         gui_costumes_add_costume:'Add Costume',
+        gui_costumes_add_blank_costume:'Add Blank Costume',
         gui_costumes_fill:'Fill',
         gui_costumes_outline:'Outline',
 
@@ -323,6 +324,8 @@ export default {
         my_gs_motion_move_0_left: 'turn left',
         my_gs_motion_move_0_right: 'turn right',
         my_gs_motion_move_3: 'set motor %1 %2 at speed %3 ',
+        my_gs_motion_stopMove:'stop moving',
+        my_gs_motion_external_motor: 'set port%1 external motor speed%2',
         my_gs_motion_steering_engine: ' %1 steering engine %2 corner 1 %3 corner 2 %4',
         my_gs_light_change: 'set # %1 in LED panel to color %2 ',
         my_gs_light_0_all: 'double light',
@@ -378,6 +381,10 @@ export default {
         my_gs_sensing_mousedown: 'pressed in robot panel?',
         my_gs_sensing_distanceto: 'read ultrasonic sensor %1',
         my_gs_sensing_linePatrolValue: 'read line patrol sensor %1',
+        my_gs_sensing_lightValue:'read right patrol sensor %1',
+        my_gs_sensing_voiceValue:'read sound patrol sensor %1',
+        my_gs_sensing_temperatureValue:'read temperature patrol sensor %1',
+        my_gs_sensing_humidityValue:'read humidity patrol sensor %1',
         my_gs_data_variable_a: 'variable A',
         my_gs_data_variable_b: 'variable B',
         my_gs_data_variable_c: 'variable C',

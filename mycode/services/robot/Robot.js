@@ -163,6 +163,50 @@ export default new class Robot {
         return protocol.parseUltrasonicValue(backBuffer);
     }
 
+   /**
+   * 获取光线传感器数值（单位豪米）
+   */
+  async getLightSensorValue(port) {
+    let order = this.orderManager.create();
+    let buffer = protocol.getLightSensorValue(order.id, port);
+    let data = await this.request(true, order, buffer);
+    let backBuffer = new Buffer(new Uint8Array(data));
+    return protocol.parseLightSensorValue(backBuffer);
+  }
+  /**
+   * 获取声音传感器数值（单位豪米）
+   */
+  async getVoiceSensorValue(port) {
+    let order = this.orderManager.create();
+    let buffer = protocol.getVoiceSensorValue(order.id, port);
+    let data = await this.request(true, order, buffer);
+    let backBuffer = new Buffer(new Uint8Array(data));
+    console.log(JSON.stringify(backBuffer));
+    return protocol.parseVoiceSensorValue(backBuffer);
+  }
+  /**
+   * 获取温度（单位豪米）TemperatureHumidity
+   */
+  async getTemperatureValue(port) {
+    let order = this.orderManager.create();
+    let buffer = protocol.getTemperatureHumidityValue(order.id, port);
+    let data = await this.request(true, order, buffer);
+    let backBuffer = new Buffer(new Uint8Array(data));
+    console.log(JSON.stringify(backBuffer));
+    return protocol.parseTemperatureValue(backBuffer);
+  }
+   /**
+   * 获取湿度（单位豪米）TemperatureHumidity
+   */
+  async getHumidityValue(port) {
+    let order = this.orderManager.create();
+    let buffer = protocol.getTemperatureHumidityValue(order.id, port);
+    let data = await this.request(true, order, buffer);
+    let backBuffer = new Buffer(new Uint8Array(data));
+    console.log(JSON.stringify(backBuffer));
+    return protocol.parseHumidityValue(backBuffer);
+  }
+
     /**
      * 获取电池电压
      */
@@ -395,6 +439,26 @@ export default new class Robot {
     }
     let order = this.orderManager.create();
     let buffer = protocol.setSteeringEngine(order.id, port, engine, radian1,radian2);
+    if (buffer) {
+      return await this.request(false, order, buffer);
+    } else {
+      return false;
+    }
+  }
+
+  		
+  /**
+   * 设置外接电机
+   */
+  async setExternalMotor(port, engine, isNotBack) {
+    if (isNotBack) {
+      let buff = protocol.setExternalMotor(0, port, engine);
+      await this.send(buff);
+      await this.wait(10);
+      return 1;
+    }
+    let order = this.orderManager.create();
+    let buffer = protocol.setExternalMotor(order.id, port, engine);
     if (buffer) {
       return await this.request(false, order, buffer);
     } else {

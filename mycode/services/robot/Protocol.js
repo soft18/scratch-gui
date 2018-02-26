@@ -306,6 +306,97 @@ class Protocol {
         return Buffer.from(buffer);
     }
 
+     /**
+   * 获取光线传感器数值
+   * @param {any} order 命令序号
+   * @param {ant} port 端口
+   */
+  getLightSensorValue(order, port) {
+    const validPorts = [
+      ports.interface1,
+      ports.interface2,
+      ports.interface3,
+      ports.interface4,
+      ports.interface5,
+      ports.interface6,
+      ports.interface7
+    ];
+    if (validPorts.indexOf(port) === -1) {
+      return undefined;
+    }
+    let size = 7;
+    let buffer = Buffer.alloc(size);
+    buffer.write('RB', 0, 2, 'utf8');
+    buffer.writeUInt8(size, 2, false);
+    buffer.writeUInt8(order, 3, false);
+    buffer.writeUInt8(actions.get_light_sensor_value, 4, false);
+    buffer.writeInt8(port, 5, false);
+    buffer.writeUInt8(this.sumCheck(buffer), 6, false);
+    console.log(buffer);
+    return Buffer.from(buffer);
+  }
+  
+    /**
+   * 声音传感器数值
+   * @param {any} order 命令序号
+   * @param {ant} port 端口
+   */
+  getVoiceSensorValue(order, port) {
+    console.log("声")
+    const validPorts = [
+      ports.interface1,
+      ports.interface2,
+      ports.interface3,
+      ports.interface4,
+      ports.interface5,
+      ports.interface6,
+      ports.interface7
+    ];
+    if (validPorts.indexOf(port) === -1) {
+      return undefined;
+    }
+    let size = 7;
+    let buffer = Buffer.alloc(size);
+    buffer.write('RB', 0, 2, 'utf8');
+    buffer.writeUInt8(size, 2, false);
+    buffer.writeUInt8(order, 3, false);
+    buffer.writeUInt8(actions.get_voice_sensor_value, 4, false);
+    buffer.writeInt8(port, 5, false);
+    buffer.writeUInt8(this.sumCheck(buffer), 6, false);
+    console.log(buffer);
+    return Buffer.from(buffer);
+  }
+  /**
+   * 温湿度传感器数值
+   * @param {any} order 命令序号
+   * @param {ant} port 端口
+   */
+  getTemperatureHumidityValue(order, port) {
+    console.log("温湿度");
+    const validPorts = [
+      ports.interface1,
+      ports.interface2,
+      ports.interface3,
+      ports.interface4,
+      ports.interface5,
+      ports.interface6,
+      ports.interface7
+    ];
+    if (validPorts.indexOf(port) === -1) {
+      return undefined;
+    }
+    let size = 7;
+    let buffer = Buffer.alloc(size);
+    buffer.write('RB', 0, 2, 'utf8');
+    buffer.writeUInt8(size, 2, false);
+    buffer.writeUInt8(order, 3, false);
+    buffer.writeUInt8(actions.get_ltemperature_humidity_value, 4, false);
+    buffer.writeInt8(port, 5, false);
+    buffer.writeUInt8(this.sumCheck(buffer), 6, false);
+    console.log(buffer);
+    return Buffer.from(buffer);
+  }
+
     /**
      * 查询硬件信息
      */
@@ -540,6 +631,33 @@ class Protocol {
     return buffer.readUInt8(5, false);
   }
 
+    /**
+   * 获取光线数值（单位豪米）
+   */
+  parseLightSensorValue(buffer) {
+    return buffer.readUInt8(5, false) * 256 + buffer.readUInt8(6, false)
+  }
+  /**
+   * 获取声音数值（单位豪米）
+   */
+  parseVoiceSensorValue(buffer) {
+    return buffer.readUInt8(5, false) * 256 + buffer.readUInt8(6, false)
+  }
+  /**
+   * 温度
+   */
+  parseTemperatureValue(buffer) {
+    console.log(buffer.readUInt8(5, false)+'.' + buffer.readUInt8(6, false));
+    return buffer.readUInt8(7, false)+'.' + buffer.readUInt8(8, false);
+  }
+  /**
+   * 湿度度
+   */
+  parseHumidityValue(buffer) {
+    console.log(buffer.readUInt8(5, false)+'.' + buffer.readUInt8(6, false));
+    return buffer.readUInt8(5, false)+'.' + buffer.readUInt8(6, false);
+  }
+
   /**
    * 获取巡线波数值
    * @param {any} order 命令序号
@@ -566,6 +684,23 @@ class Protocol {
     buffer.writeUInt8(actions.get_Line_value, 4, false);
     buffer.writeInt8(port, 5, false);
     buffer.writeUInt8(this.sumCheck(buffer), 6, false);
+    return Buffer.from(buffer);
+  }
+
+    /**
+   * 设置外接电机
+   */
+  setExternalMotor(orderId, port, engine) {
+    let size = 8;
+    let buffer = Buffer.alloc(size);  
+    buffer.write('RB', 0, 2, 'utf8');
+    buffer.writeUInt8(size, 2, false);
+    buffer.writeUInt8(orderId, 3, false);
+    buffer.writeUInt8(actions.set_Out_engine, 4, false);
+    buffer.writeInt8(port, 5, false);
+    buffer.writeInt8(engine, 6, false);
+    buffer.writeUInt8(this.sumCheck(buffer), 7, false);
+    console.log(JSON.stringify(buffer));
     return Buffer.from(buffer);
   }
 }

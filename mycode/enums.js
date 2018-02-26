@@ -139,6 +139,22 @@ export default {
        * 设置舵机角度
        */
       set_Steering_engine: 0x19,
+      /*
+      * 获取温湿度传感器数值
+      */
+     get_ltemperature_humidity_value:0xA5,
+        /**
+      * 获取光线传感器数值
+      */
+     get_light_sensor_value:0xA6, 
+     /**
+      * 获取声音传感器数值
+      */
+     get_voice_sensor_value:0xA7, 
+       /**
+      * 设置外接电机
+      */
+     set_Out_engine: 0x1a,
       /**
        * 设置蜂鸣器
        */

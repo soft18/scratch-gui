@@ -17,7 +17,7 @@ export default new class GsBlocks {
     * 自定义blockly
     * */
     loadblock() {
-        var GS ={};
+        var GS = {};
         GS.init = function () {
             try {
                 GS.MyBlocksInit();
@@ -28,7 +28,7 @@ export default new class GsBlocks {
         };
 
         GS.MyBlocksInit = function () {
-//event
+            //event
             Blockly.Blocks['gs_event_whenflagclicked'] = {
                 /**
                  * from:event_whenflagclicked
@@ -69,7 +69,7 @@ export default new class GsBlocks {
                 }
             };
 
-//move
+            //move
             Blockly.Blocks['gs_motion_move'] = {
                 /**
                  * from:motion_move
@@ -165,6 +165,17 @@ export default new class GsBlocks {
                 }
             };
 
+            //停止运动
+            Blockly.Blocks['gs_motion_stopMove'] = {
+                init: function () {
+                    this.jsonInit({
+                        "message0": LOCAL.my_gs_motion_stopMove,
+                        "category": Blockly.Categories.motion,
+                        "extensions": ["colours_motion", "shape_statement"]
+                    });
+                }
+            };
+
             Blockly.Blocks['gs_motion_steering_engine'] = {
                 /**
                  * from:motion_move
@@ -208,7 +219,42 @@ export default new class GsBlocks {
                 }
             };
 
-//light:
+            Blockly.Blocks['gs_motion_external_motor'] = {
+                /**
+                 * from:motion_move
+                 * Block to move steps.
+                 * @this Blockly.Block
+                 */
+                init: function () {
+                  this.jsonInit({
+                    "message0": LOCAL.my_gs_motion_external_motor,
+                    "args0": [
+                      {
+                        "type": "field_dropdown",
+                        "name": "PORT",
+                        "options": [
+                          [LOCAL.my_gs_port_1, '1'],
+                          [LOCAL.my_gs_port_2, '2'],
+                          [LOCAL.my_gs_port_3, '3'],
+                          [LOCAL.my_gs_port_4, '4'],
+                          [LOCAL.my_gs_port_5, '5'],
+                          [LOCAL.my_gs_port_6, '6'],
+                          [LOCAL.my_gs_port_7, '7'],
+                          [LOCAL.my_gs_port_8, '8']
+                        ]
+                      },
+                      {
+                        "type": "input_value",
+                        "name": "s1"
+                      }
+                    ],
+                    "category": Blockly.Categories.motion,
+                    "extensions": ["colours_motion", "shape_statement"]
+                  });
+                }
+              };
+
+            //light:
             Blockly.Blocks['gs_light_change'] = {
                 /**
                  * Block to change graphic effect.
@@ -1143,7 +1189,7 @@ export default new class GsBlocks {
                 }
             };
 
-//运算
+            //运算
             Blockly.Blocks['gs_operator_add'] = {
                 /**
                  * Block for adding two numbers.
@@ -1414,7 +1460,7 @@ export default new class GsBlocks {
                 }
             };
 
-//传感器
+            //传感器
             Blockly.Blocks['gs_sensing_mousedown'] = {
                 /**
                  * Block to Report if the mouse is down.
@@ -1486,6 +1532,126 @@ export default new class GsBlocks {
                     });
                 }
             };
+
+                                  // 获取光线数值
+        Blockly.Blocks['gs_sensing_lightValue'] = {
+            /**
+             * Block to Report distance to another Object.
+             * @this Blockly.Block
+             */
+            init: function () {
+              this.jsonInit({
+                "message0": LOCAL.my_gs_sensing_lightValue,
+                "args0": [
+                  {
+                    "type": "field_dropdown",
+                    "name": "PORT",
+                    "options": [
+                      [LOCAL.my_gs_port_1, '1'],
+                      [LOCAL.my_gs_port_2, '2'],
+                      [LOCAL.my_gs_port_3, '3'],
+                      [LOCAL.my_gs_port_4, '4'],
+                      [LOCAL.my_gs_port_5, '5'],
+                      [LOCAL.my_gs_port_6, '6'],
+                      [LOCAL.my_gs_port_7, '7'],
+                    ]
+                  },
+                ],
+                "category": Blockly.Categories.sensing,
+                "extensions": ["colours_motion", "output_number"]
+              });
+            }
+          };
+      
+             // 获取声音数值
+             Blockly.Blocks['gs_sensing_voiceValue'] = {
+              /**
+               * Block to Report distance to another Object.
+               * @this Blockly.Block
+               */
+              init: function () {
+                this.jsonInit({
+                  "message0": LOCAL.my_gs_sensing_voiceValue,
+                  "args0": [
+                    {
+                      "type": "field_dropdown",
+                      "name": "PORT",
+                      "options": [
+                        [LOCAL.my_gs_port_1, '1'],
+                        [LOCAL.my_gs_port_2, '2'],
+                        [LOCAL.my_gs_port_3, '3'],
+                        [LOCAL.my_gs_port_4, '4'],
+                        [LOCAL.my_gs_port_5, '5'],
+                        [LOCAL.my_gs_port_6, '6'],
+                        [LOCAL.my_gs_port_7, '7'],
+                      ]
+                    },
+                  ],
+                  "category": Blockly.Categories.sensing,
+                  "extensions": ["colours_motion", "output_number"]
+                });
+              }
+            };
+      
+                // 获取温度数值
+                Blockly.Blocks['gs_sensing_temperatureValue'] = {
+                  /**
+                   * Block to Report distance to another Object.
+                   * @this Blockly.Block
+                   */
+                  init: function () {
+                    this.jsonInit({
+                      "message0": LOCAL.my_gs_sensing_temperatureValue,
+                      "args0": [
+                        {
+                          "type": "field_dropdown",
+                          "name": "PORT",
+                          "options": [
+                            [LOCAL.my_gs_port_1, '1'],
+                            [LOCAL.my_gs_port_2, '2'],
+                            [LOCAL.my_gs_port_3, '3'],
+                            [LOCAL.my_gs_port_4, '4'],
+                            [LOCAL.my_gs_port_5, '5'],
+                            [LOCAL.my_gs_port_6, '6'],
+                            [LOCAL.my_gs_port_7, '7'],
+                          ]
+                        },
+                      ],
+                      "category": Blockly.Categories.sensing,
+                      "extensions": ["colours_motion", "output_number"]
+                    });
+                  }
+                };
+      
+                  // 获取湿度数值
+                  Blockly.Blocks['gs_sensing_humidityValue'] = {
+                    /**
+                     * Block to Report distance to another Object.
+                     * @this Blockly.Block
+                     */
+                    init: function () {
+                      this.jsonInit({
+                        "message0": LOCAL.my_gs_sensing_humidityValue,
+                        "args0": [
+                          {
+                            "type": "field_dropdown",
+                            "name": "PORT",
+                            "options": [
+                              [LOCAL.my_gs_port_1, '1'],
+                              [LOCAL.my_gs_port_2, '2'],
+                              [LOCAL.my_gs_port_3, '3'],
+                              [LOCAL.my_gs_port_4, '4'],
+                              [LOCAL.my_gs_port_5, '5'],
+                              [LOCAL.my_gs_port_6, '6'],
+                              [LOCAL.my_gs_port_7, '7'],
+                            ]
+                          },
+                        ],
+                        "category": Blockly.Categories.sensing,
+                        "extensions": ["colours_motion", "output_number"]
+                      });
+                    }
+                  };
 
             //变量
             Blockly.Blocks['gs_data_variable'] = {
