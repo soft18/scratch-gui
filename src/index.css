@@ -2,10 +2,38 @@ html,
 body,
 .app {
     /* probably unecessary, transitional until layout is refactored */
-    width: 100%; 
+    width: 100%;
     height: 100%;
     margin: 0;
 }
 
 /* @todo: move globally? Safe / side FX, for blocks particularly? */
 * { box-sizing: border-box; }
+
+/* Blocks工具栏宽度 */
+:global(.scratchCategoryMenu) {
+    width: 68px;
+}
+:global(.blocklyFlyout), :global(.blocklyScrollbarVertical.blocklyFlyoutScrollbar) {
+    margin-left: 16px;
+}
+/* 工具栏Blocks字体改大 */
+:global(.scratchCategoryMenuItemLabel) {
+    font-size: 0.85rem !important;
+}
+/* Hover显示完整语句块 */
+:global(.blocklyFlyout:hover) {
+    overflow: visible;
+}
+:global(.injectionDiv) {
+    overflow: hidden !important;
+}
+:global(.blocklyFlyout:hover .blocklyWorkspace) {
+    -webkit-clip-path: none;
+    clip-path: none;
+}
+/* 默认Blocks文字改小 */
+:global(.blocklyText) {
+    font-size: 14pt;
+    font-weight: 400;
+}

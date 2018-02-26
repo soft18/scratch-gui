@@ -163,3 +163,10 @@
 .extension-button > div {
     margin-top: 0;
 }
+
+/*
+ *  新增样式或替换默认样式
+ */
+.extension-button-container{
+    width: 4.25rem;
+}
