@@ -1,4 +1,5 @@
 @import "../../css/colors.css";
+@import "../../css/z-index.css";
 
 .background {
     position: fixed;
@@ -6,7 +7,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 999; /* Below preview modal */
+    z-index: $z-index-loader;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,18 +30,17 @@
     margin-top: -4px;
 }
 
-.topBlock {
+.top-block {
     animation: top-slide-in 1.5s ease infinite;
 }
 
-.middleBlock {
+.middle-block {
     animation: middle-slide-in 1.5s ease infinite;
 }
 
-.bottomBlock {
+.bottom-block {
     animation: bottom-slide-in 1.5s ease infinite;
 }
-
 
 @keyframes top-slide-in {
   0% {
@@ -86,4 +86,18 @@
     transform: translateY(0px);
     opacity: 1;
   }
+}
+
+.message-container-outer {
+    height: 30px;
+    overflow: hidden;
+}
+
+.message-container-inner {
+    transition: transform 0.5s;
+}
+
+.message {
+    height: 20px;
+    margin: 5px 0;
 }
